@@ -17,7 +17,7 @@ export default {
     colors: {
       ...colors,
       primary: colors.lightBlue,
-      secondary: colors.red,
+      secondary: colors.darkRed,
     },
   },
   plugins: [],
