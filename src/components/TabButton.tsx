@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 interface TabButtonProps {
   active: boolean;
@@ -6,21 +7,29 @@ interface TabButtonProps {
   children: React.ReactNode;
 }
 
+const variants = {
+  default: { width: 0 },
+  active: { width: "calc(100% - 0.75rem)" },
+};
+
 const TabButton: React.FC<TabButtonProps> = ({
   active,
   selectTab,
   children,
 }) => {
+  const buttonClasses = active
+    ? "text-white border-purple-500"
+    : "text-[#adb7be] border-transparent hover:text-white hover:border-purple-500";
   return (
-    <button
-      onClick={selectTab}
-      className={`px-4 py-2 font-semibold border-b-2 ${
-        active
-          ? "text-white border-purple-500"
-          : "text-[#adb7be] border-transparent hover:text-white hover:border-purple-500"
-      }`}
-    >
-      {children}
+    <button onClick={selectTab}>
+      <p className={`mr-3 font-semibold hover:text-white ${buttonClasses}`}>
+        {children}
+      </p>
+      <motion.div
+        animate={active ? "active" : "default"}
+        variants={variants}
+        className="h-1 bg-primary-500 mt-2 mr-3"
+      />
     </button>
   );
 };
